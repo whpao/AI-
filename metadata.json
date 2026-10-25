@@ -1,0 +1,6 @@
+{
+  "name": "一字問心｜AI 測字館",
+  "description": "以清代《測字秘牒》與《字觸》古籍方法為本，結合手機觸控手寫辨識，為現代生活問題提供有本有據的繁體中文測字解讀與反思。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

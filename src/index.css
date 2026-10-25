@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "Noto Serif TC", "LXGW WenKai TC", "Songti TC", "Source Han Serif TC", serif;
+    background-color: #FAF7F2;
+    color: #22211F;
+    -webkit-tap-highlight-color: transparent;
+  }
+}

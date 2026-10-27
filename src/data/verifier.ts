@@ -223,9 +223,22 @@ export function verifyAndHydrateDivination(
       computed?.density ||
       '分佈勻稱（筆墨疏密相宜）';
 
-    const reflection =
+    let reflection =
       rawHf?.entertainment_reflection?.trim() ||
-      `本次手寫字跡呈現「${size.split('（')[0]}、${position.split('（')[0]}」之勢。落筆舒展從容，氣韻自適，為當次隨興之字態趣味。`;
+      `本次手寫字跡呈現「${size.split('（')[0]}、${position.split('（')[0]}」之勢。落筆舒展從容，氣韻自適，別具風致。`;
+
+    // Strip any residual disclaimer phrases or defensive notices
+    reflection = reflection
+      .replace(/[(（]?[此為本項為]*當次字態之娛樂聯想[，,、\s]*非心理[性格人格]*[診斷推斷]*[）)]?[。；;]?/g, '')
+      .replace(/[(（]?非心理[性格人格學]*[診斷推斷]+[）)]?[。；;]?/g, '')
+      .replace(/[(（]?娛樂聯想[，,、\s]*非[心理性格]+[）)]?[。；;]?/g, '')
+      .replace(/[(（]?純屬娛樂[，,、\s]*僅供參考[）)]?[。；;]?/g, '')
+      .replace(/[(（]?免責聲明[：:]?[^）)\n]*[）)]?/g, '')
+      .trim();
+
+    if (!reflection) {
+      reflection = `本次手寫字跡呈現「${size.split('（')[0]}、${position.split('（')[0]}」之勢，落筆舒展從容，氣韻相生，別具風致。`;
+    }
 
     handwriting_features = {
       is_handwritten: true,

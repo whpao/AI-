@@ -11,7 +11,6 @@ import {
   BookOpen,
   Sparkles,
   Info,
-  ShieldAlert,
 } from 'lucide-react';
 
 interface StepResultProps {
@@ -43,12 +42,12 @@ export const StepResult: React.FC<StepResultProps> = ({
 
     let handwritingSummary = '';
     if (result.handwriting_features && result.handwriting_features.is_handwritten) {
-      handwritingSummary = `\n【當次筆跡字態觀察】（娛樂聯想・非真實人格判定）：
+      handwritingSummary = `\n【當次筆跡字態意象】：
 ・大小：${result.handwriting_features.size}
 ・位置：${result.handwriting_features.position}
 ・歪斜：${result.handwriting_features.slant}
 ・疏密：${result.handwriting_features.density}
-・字態聯想：${result.handwriting_features.entertainment_reflection}\n`;
+・字態意象：${result.handwriting_features.entertainment_reflection}\n`;
     } else {
       handwritingSummary = `\n【書寫模式】：鍵盤直接輸入（跳過手寫筆跡分析）\n`;
     }
@@ -79,7 +78,7 @@ ${result.modern_reflection}
 【古籍依據節選】（線上轉錄節選，未作影本校勘）：
 ${sourceCitations}
 
-【聲明】：本應用依古籍文字方法作文化與生活思辨解讀，筆跡字態純屬當次書寫娛樂聯想，不具預測效力，不代表事實或未來預測。
+【文化註記】：本測字分析本於古籍字形離合之文人意趣，旨在啟發心智與生活省思。
 ──────────────────────`;
 
     try {
@@ -167,11 +166,11 @@ ${sourceCitations}
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#B9382C]" />
             <h3 className="font-serif font-bold text-lg text-[#25221E]">
-              字態觀察：當次書寫趣味聯想
+              字態筆韻：當次書寫意象
             </h3>
           </div>
-          <span className="text-xs font-serif px-2.5 py-0.5 rounded-full bg-[#FFF2F0] text-[#B9382C] border border-[#F5C7C0] font-bold">
-            娛樂聯想・與古籍分開
+          <span className="text-xs font-serif px-2.5 py-0.5 rounded-full bg-[#F5F1E9] text-[#7A7264] border border-[#E3DCD0]">
+            筆韻觀察
           </span>
         </div>
 
@@ -219,16 +218,12 @@ ${sourceCitations}
             {/* Commentary */}
             <div className="p-3.5 bg-white rounded-xl border border-[#DFD8CC]">
               <span className="text-xs font-serif text-[#8A8274] block mb-1 font-bold">
-                字態聯想解析：
+                字態筆韻意象：
               </span>
               <p className="text-lg font-serif text-[#2C2924] leading-relaxed">
                 {result.handwriting_features!.entertainment_reflection}
               </p>
             </div>
-
-            <p className="text-xs text-[#8A8274] font-serif leading-normal">
-              註：此處為當次手指書寫之字形分佈趣味觀察，與正文字理解讀分開列示，不宣稱具備心理學、人格或誠信之診斷效力。
-            </p>
           </div>
         ) : (
           <div className="p-3.5 bg-white rounded-xl border border-[#DFD8CC] text-center">
@@ -298,12 +293,6 @@ ${sourceCitations}
         <p className="text-xl font-serif text-[#2C2924] leading-relaxed">
           {result.zichu_extension.explanation}
         </p>
-
-        {!isDirectCase && (
-          <p className="mt-3 text-xs text-[#8A8375] font-serif bg-[#FAF7F2] p-2.5 rounded-lg border border-[#EDE7DC]">
-            註：此處以漢字離合之趣展開思維引申，不作吉凶論斷。詳細古籍文獻可於下方依據區查看。
-          </p>
-        )}
       </section>
 
       {/* 5. 「回到你問的事」 Modern Reflection */}
@@ -414,7 +403,7 @@ ${sourceCitations}
           {copied ? (
             <>
               <Check className="w-5 h-5 stroke-[2.5]" />
-              <span>已複製解讀內容（附古籍出處與聲明）</span>
+              <span>已複製解讀內容（附古籍出處）</span>
             </>
           ) : (
             <>
@@ -445,12 +434,12 @@ ${sourceCitations}
         </div>
       </div>
 
-      {/* Footer disclaimer */}
+      {/* Footer */}
       <footer className="mt-8 pt-4 border-t border-[#E5DFD4] text-center space-y-2">
-        <p className="text-xs font-serif text-[#878072] leading-relaxed flex items-center justify-center gap-1">
-          <ShieldAlert className="w-3.5 h-3.5 text-[#A39B8D]" />
+        <p className="text-xs font-serif text-[#878072] leading-relaxed flex items-center justify-center gap-1.5">
+          <Sparkles className="w-3.5 h-3.5 text-[#B9382C]" />
           <span>
-            依古籍文字方法作文化與娛樂解讀，不代表事實或未來預測。
+            一字自有一心，以古籍字形離合之趣寄託生活省思。
           </span>
         </p>
         <p className="text-[11px] font-serif text-[#A8A194]">
